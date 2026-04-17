@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>View File - FireBin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" sizes="48x48" href="favicon-48.ico">
+    <link rel="icon" type="image" sizes="192x192" href="favicon-192.ico">
+    <link rel="icon" type="image" sizes="180x180" href="favicon-180.ico">
+</head>
+<body>
+
+<h2>File Viewer</h2>
+
+<div id="fileContainer"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, doc, getDoc } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDMp1eAYzRp0EyaCJvfFKkWAAU2gEgRkoU",
+  authDomain: "firebin-app.firebaseapp.com",
+  projectId: "firebin-app",
+  storageBucket: "firebin-app.firebasestorage.app",
+  messagingSenderId: "1055816237071",
+  appId: "1:1055816237071:web:efc5dd90ee7a018f36e37a"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+// get file id from URL
+const params = new URLSearchParams(window.location.search);
+const id = params.get("id");
+
+const fileRef = doc(db, "files", id);
+const docSnap = await getDoc(fileRef);
+
+if (docSnap.exists()) {
+    const data = docSnap.data();
+
+    if (data.isPublic) {
+        const iframe = document.createElement("iframe");
+        iframe.src = data.fileData;
+        iframe.width = "100%";
+        iframe.height = "600px";
+
+        document.getElementById("fileContainer").appendChild(iframe);
+    } else {
+        document.body.innerHTML = "<h3>Access Denied</h3>";
+    }
+} else {
+    document.body.innerHTML = "<h3>File Not Found</h3>";
+}
+</script>
+
+</body>
+</html>

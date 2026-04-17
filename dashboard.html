@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>FireBin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image" sizes="48x48" href="favicon-48.ico">
+    <link rel="icon" type="image" sizes="192x192" href="favicon-192.png">
+    <link rel="icon" type="image" sizes="180x180" href="favicon-180.png">
+</head>
+<body>
+
+<div class="navbar">
+    <a href="index.html"><h1>🔥 FireBin</h1></a>
+    <div>
+        <span id="userEmail"></span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        
+        <div class="upload-dropzone">
+            <h3>Upload File</h3>
+            <input type="file" id="fileInput"><br>
+            <button id="uploadBtn" onclick="uploadFile()">Upload</button>
+
+            <div id="loader" style="display:none; width: 100%;">
+                <div id="progressContainer">
+                    <div id="progressBar"></div>
+                </div>
+                <p id="progressText">Uploading... 0%</p>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px; text-align: left;">
+            <h3>Your Files</h3>
+            <div id="fileList"></div>
+        </div>
+
+    </div>
+
+</div>
+
+<div id="shareModal" class="modal">
+    <div class="modal-content">
+        <h3>Share File</h3>
+
+        <button onclick="showEmailShare()">Share via Email</button>
+        <button onclick="showLinkShare()">Share via Link</button>
+
+        <div id="emailSection" style="display:none;">
+            <input type="text" id="shareEmails" placeholder="Enter emails (comma separated)">
+            <button onclick="shareWithEmails()">Share</button>
+        </div>
+
+        <div id="linkSection" style="display:none;">
+            <input type="text" id="shareLink" readonly>
+            <button onclick="copyLink()">Copy</button>
+        </div>
+
+        <br>
+        <button onclick="closeModal()">Close</button>
+    </div>
+</div>
+
+<div id="toast"></div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

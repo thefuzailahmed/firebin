@@ -1,0 +1,350 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0f172a;
+    color: white;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #1e293b;
+}
+
+.navbar h2 {
+    margin: 0;
+}
+
+.navbar button {
+    margin-left: 10px;
+}
+
+/* Container */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 20px;
+    max-width: 800px; 
+    margin: 0 auto;   
+    width: 100%; /* Ensures it scales down on smaller screens */
+}
+
+/* Cards */
+.card {
+    background: #1e293b;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Upload Dropzone */
+.upload-dropzone {
+    border: 2px dashed #38bdf8;
+    padding: 60px 20px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}
+
+/* File List */
+#fileList {
+    width: 100%;
+    text-align: left; 
+}
+
+#fileList div {
+    background: #0f172a;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    word-break: break-all; /* Prevents long file names from breaking the layout */
+}
+
+/* Align the buttons in the file list */
+#fileList div {
+    text-align: center; /* Centers the text and the buttons */
+    padding: 20px;      /* Gives more breathing room */
+}
+
+#fileList button {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 5px;       /* Consistent spacing between all buttons */
+    min-width: 100px;  /* Ensures buttons have a symmetric width */
+}
+
+/* Buttons */
+button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #38bdf8;
+    color: black;
+    cursor: pointer;
+    transition: 0.2s;
+    margin: 2px;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background-color: #0ea5e9;
+}
+
+/* Progress Bar */
+#progressContainer {
+    width: 100%;
+    height: 10px;
+    background-color: #0f172a;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+    background-color: #38bdf8;
+    border-radius: 10px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 20px; /* Adds breathing room around the modal on small screens */
+}
+
+.modal-content {
+    background: #1e293b;
+    padding: 20px;
+    margin: 100px auto;
+    width: 100%; /* Flexible width */
+    max-width: 400px; /* Caps the width on larger screens */
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* Toast */
+#toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #38bdf8;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: none;
+    z-index: 1000; /* Ensures it stays on top of other elements */
+}
+
+.auth-container {
+    width: 90%; /* Flexible width */
+    max-width: 400px; /* Caps the width */
+    margin: 100px auto;
+    padding: 20px;
+    background: #1e293b;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.auth-container input {
+    width: 100%; /* Takes full available width of container */
+    padding: 10px; /* Slightly larger padding for easier tapping */
+    margin: 8px 0;
+    border-radius: 5px;
+    border: none;
+}
+
+.auth-container button {
+    width: 100%; /* Makes the auth button full width */
+    margin-top: 15px;
+    padding: 10px;
+}
+
+/* =========================================
+   Mobile Responsiveness (Media Queries) 
+   ========================================= */
+@media (max-width: 600px) {
+    /* Stack the navbar nicely on narrow screens */
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 20px;
+        text-align: center;
+    }
+    
+    .navbar div {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Reduce heavy paddings to save screen real estate */
+    .container {
+        padding: 20px 15px;
+    }
+
+    .card {
+        padding: 20px 15px;
+    }
+
+    .upload-dropzone {
+        padding: 40px 15px;
+    }
+
+    /* Make buttons slightly larger for better touch targets */
+    button {
+        padding: 12px 15px; 
+    }
+    
+    /* Ensure the toast notification doesn't break off-screen */
+    #toast {
+        left: 20px;
+        right: 20px;
+        text-align: center;
+    }
+}
+
+/* Homepage Specific Styles */
+.home-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Takes up the full height of the screen */
+    margin: 0;
+    overflow: hidden; /* Prevents scrollbars if not needed */
+}
+
+.hero-container {
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero-title {
+    font-size: 4rem; /* Makes the title nice and massive */
+    margin: 0 0 10px 0;
+    color: white;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: #94a3b8; /* A subtle grey that looks great on dark backgrounds */
+    margin-bottom: 40px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* Base button styling for the links */
+.hero-buttons a {
+    text-decoration: none;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+/* Solid button for Login */
+.btn-primary {
+    background-color: #38bdf8;
+    color: #0f172a;
+    border: 2px solid #38bdf8;
+}
+
+.btn-primary:hover {
+    background-color: #0ea5e9;
+    border-color: #0ea5e9;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Outline button for Sign Up */
+.btn-secondary {
+    background-color: transparent;
+    color: #38bdf8;
+    border: 2px solid #38bdf8;
+}
+
+.btn-secondary:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+/* Simple fade-in animation for the load */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Responsiveness for Hero */
+@media (max-width: 600px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+/* Ensure the body takes up the full screen height */
+.home-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+/* Pushes the footer to the bottom */
+.hero-container {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Keeps your hero content centered vertically */
+    align-items: center;
+}
+
+/* Footer Styling */
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 0.9rem;
+    color: #888; /* A subtle grey, or use your theme colours */
+}
+
+.footer p {
+    margin: 0;
+}
